@@ -1,0 +1,746 @@
+
+
+
+
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<title>kevv.da.bizway.nl - DirectAdmin v1.52.1</title>
+	<script language="JavaScript">
+	<!-- // start preload code
+		home_image = new Image();
+		webmail_image = new Image();
+		password_image = new Image();
+		fileman_image = new Image();
+		help_image = new Image();
+		logout_image = new Image();
+		logout_image2 = new Image();
+
+		home_image.src = "/IMG_SKIN_NAV_HOME_OVER";
+		webmail_image.src = "/IMG_SKIN_NAV_WEBMAIL_OVER";
+		password_image.src = "/IMG_SKIN_NAV_PASSWORD_OVER";
+		fileman_image.src = "/IMG_SKIN_NAV_FILEMAN_OVER";
+		help_image.src = "/IMG_SKIN_NAV_HELP_OVER";
+		logout_image.src = "/IMG_SKIN_NAV_LOGOUT_OVER";
+		logout_image2.src = "/IMG_SKIN_NAV_LOGOUT2_OVER";
+
+	//timer for auto-logout
+		function log_me_out()
+		{
+			location.href = '/CMD_LOGOUT';
+		}
+		var logout_timeout = setTimeout('log_me_out();', 60*60*1000);
+
+	// done with preload code -->
+	</script>
+
+	<link href="/CSS_STYLE?v=1.52.1&tokenize_css=yes" type="text/css" rel="stylesheet" />
+
+
+	<script type="text/javascript">
+	<!-- // start preload code
+	function tr_add_highlight()
+	{
+		add_highlight(this, 'list','listhighlight','list2','list2highlight','listwrap','listwraphighlight','listwrap2','listwrap2highlight');
+	}
+	function tr_remove_highlight()
+	{
+		add_highlight(this, 'listhighlight','list','list2highlight','list2','listwraphighlight','listwrap','listwrap2highlight','listwrap2');
+	}
+	function add_highlight(ob,h1,l1,h2,l2,h3,l3,h4,l4)
+	{
+		var tds = ob.getElementsByTagName('td');
+		for(var d=0; d<tds.length; d++)
+		{
+			switch (tds[d].className)
+			{
+				case h1	:	tds[d].className = l1; break;
+				case h2	:	tds[d].className = l2; break;
+				case h3	:	tds[d].className = l3; break;
+				case h4	:	tds[d].className = l4; break;
+
+			}
+		}
+	}
+	function make_tables_highlightable()
+	{
+		var tables = document.getElementsByTagName('table');
+		for (var tbl=0; tbl<tables.length; tbl++)
+		{
+			if (tables[tbl].className.indexOf('table-highlight') != -1)
+			{
+				var trs = tables[tbl].getElementsByTagName('tr');
+				for(var tr=0; tr<trs.length; tr++)
+				{
+					trs[tr].onmouseover = tr_add_highlight;
+					trs[tr].onmouseout = tr_remove_highlight;
+				}
+			}
+		}
+	}
+	// done with preload code -->
+	</script>
+
+
+</head>
+
+<body onUnload="askSaveIt();" bgcolor="#FFFFFF" leftMargin=0 rightMargin=0 topMargin=0 bottomMargin=0>
+
+<table height=100% width=100% cellpadding=0 cellspacing=0>
+<tr>
+<td align=center>
+
+<table height=100% cellpadding=0 cellspacing=0>
+	<tr>
+		<td height=100% width=15 class=left_shadow valign=bottom>
+		</td>
+		<td  valign=top>
+			<table width=100% height=100% cellpadding=0 cellspacing=0>
+				<tr>
+					<td height=120 align=left background="/IMG_SKIN_HEADER_NONAME"><img src="/IMG_SKIN_HEADER"></td>
+				</tr>
+				<tr>
+
+
+
+
+
+					<td height=100% valign=top>
+
+
+
+						<table width="100%" cellspacing="0" cellpadding="0" background="/IMG_SKIN_NAV_BG">
+						<tr>
+							<td><a onMouseOver="navhome.src=home_image.src;" onMouseOut="navhome.src='/IMG_SKIN_NAV_HOME';" href="/HTM_INDEX_USER"><img name="navhome" border="0" src="/IMG_SKIN_NAV_HOME" width="72" height="78" alt="Home"></a></td>
+							<td><a onMouseOver="navwebmail.src=webmail_image.src;" onMouseOut="navwebmail.src='/IMG_SKIN_NAV_WEBMAIL';" href="https://kevv.da.bizway.nl/roundcube" target=_blank><img name="navwebmail" border="0" src="/IMG_SKIN_NAV_WEBMAIL" width="72" height="78" alt="Webmail"></a></td>
+							<td><a onMouseOver="navpass.src=password_image.src;" onMouseOut="navpass.src='/IMG_SKIN_NAV_PASSWORD';" href="/HTM_PASSWD"><img name="navpass" border="0" src="/IMG_SKIN_NAV_PASSWORD" width="72" height="78" alt="Password"></a></td>
+							<td><a onMouseOver="navhelp.src=help_image.src;"       onMouseOut="navhelp.src='/IMG_SKIN_NAV_HELP';"	target=_blank href="http://www.site-helper.com"><img name="navhelp" border="0" src="/IMG_SKIN_NAV_HELP" width="67" height="78" alt="Help"></a></td>
+							<td><a onMouseOver="navfileman.src=fileman_image.src;" onMouseOut="navfileman.src='/IMG_SKIN_NAV_FILEMAN';" href="/CMD_FILE_MANAGER"><img name="navfileman" border="0" src="/IMG_SKIN_NAV_FILEMAN" width="72" height="78" alt="File Manager"></a></td>
+							<td width="100%" align=right><a onMouseOver="navlogout.src=logout_image2.src;" onMouseOut="navlogout.src='/IMG_SKIN_NAV_LOGOUT2';" href="/CMD_LOGOUT"><img name="navlogout" border="0" src="/IMG_SKIN_NAV_LOGOUT2" width="93" height="78" alt="Logout"></a></td>
+						</tr>
+						</table>
+
+						<table width=100%>
+						<tr><td>
+
+
+
+<script language="Javascript">
+<!--
+
+var preview=0;
+var save=1;
+
+function showPreview(text)
+{
+	if (preview && !preview.closed) preview.document.close();
+	preview = window.open("","preview","width=800,height=600,scrollbars=yes,resizable=yes");
+	preview.focus();
+	preview.document.write(text.value);
+}
+
+function askSaveIt()
+{
+	if (save == 1)
+		if (confirm("Do you want to save your changes to " + document.info.filename.value + "?"))
+			document.info.submit();
+}
+
+//onUnload="askSaveIt()" will be called.
+
+// -->
+</script>
+
+<table class=list  cellpadding=3 cellspacing=1>
+
+<form name=info action='/CMD_FILE_MANAGER' method='POST'>
+<input type=hidden name=action value="edit">
+<input type=hidden name=path value="/mappen/gouda/monocle">
+<tr ><td class=listtitle>Edit a file</td ></tr>
+<tr><td class=list align=center><textarea class="code_edit" name=text rows=24 cols=120 wrap=off>
+&#35;&#35;&#35; Define a unique instance id. It needs to be different for each instance running.
+&#35;&#35;&#35; If not set explicitly, monocle root dir will be used as default.
+&#35;
+&#35;INSTANCE&#95;ID &#61; &#39;/var/www/Monocle&#39;
+
+
+&#35;&#35;&#35; All lines that are commented out &#40;and some that aren&#39;t&#41; are optional &#35;&#35;&#35;
+
+&#35;DB&#95;ENGINE &#61; &#39;sqlite&#58;///db.sqlite&#39;
+DB&#95;ENGINE &#61; &#39;mysql&#58;//monocle&#95;gouda&#58;rE&#48;IXeBh&#50;&#48;&#64;localhost/monocle&#95;gouda&#39;
+&#35;DB&#95;ENGINE &#61; &#39;postgresql&#58;//user&#58;pass&#64;localhost/monocle
+
+&#35;&#35; Reconnect db session after x seconds. It solves lost connection error if DB wait&#95;timeout is set to lower values.
+&#35; DB&#95;POOL&#95;RECYCLE &#61; &#54;&#48;&#48;
+
+AREA&#95;NAME &#61; &#39;Gouda&#39;     &#35; the city or region you are scanning
+LANGUAGE &#61; &#39;EN&#39;       &#35; ISO &#54;&#51;&#57;&#45;&#49; codes EN, DE, ES, FR, IT, JA, KO, PT, or ZH for Pokémon/move names
+MAX&#95;CAPTCHAS &#61; &#49;&#48;&#48;    &#35; stop launching new visits if this many CAPTCHAs are pending
+SCAN&#95;DELAY &#61; &#49;&#48;       &#35; wait at least this many seconds before scanning with the same account
+SPEED&#95;UNIT &#61; &#39;kilometers&#39;  &#35; valid options are &#39;miles&#39;, &#39;kilometers&#39;, &#39;meters&#39;
+SPEED&#95;LIMIT &#61; &#49;&#57;.&#53;    &#35; limit worker speed to this many SPEED&#95;UNITs per hour
+
+&#35; The number of simultaneous workers will be these two numbers multiplied.
+&#35; On the initial run, workers will arrange themselves in a grid across the
+&#35; rectangle you defined with MAP&#95;START and MAP&#95;END.
+&#35; The rows/columns will also be used for the dot grid in the console output.
+&#35; Provide more accounts than the product of your grid to allow swapping.
+GRID &#61; &#40;&#49;&#52;, &#49;&#52;&#41;  &#35; rows, columns
+
+&#35;&#35;&#35; Extra accounts to pull from DB in percentage of total workers for swap.
+&#35;&#35;&#35; Default &#48;.&#48; &#40;&#48;&#37;&#41;
+&#35;EXTRA&#95;ACCOUNT&#95;PERCENT &#61; &#48;.&#48;
+&#35;
+&#35;&#35;&#35; For example, if you want to have extra &#49;&#48;&#37; accounts for periodic swapping, set
+&#35;EXTRA&#95;ACCOUNT&#95;PERCENT &#61; &#48;.&#49;
+
+&#35;&#35;&#35; Lv&#51;&#48; accounts to pull from DB in percentage of total workers for encounter.
+&#35;&#35;&#35; Setting this will enable Lv&#51;&#48; pool for encounters
+&#35;&#35;&#35; Default &#48;.&#48;&#40;&#48;&#37;&#41;
+&#35;LV&#51;&#48;&#95;PERCENT&#95;OF&#95;WORKERS &#61; &#48;.&#48;
+&#35;
+&#35;&#35;&#35; For example, if you want to have &#53;&#37; level &#51;&#48; acccounts for encounter, set
+LV&#51;&#48;&#95;PERCENT&#95;OF&#95;WORKERS &#61; &#48;.&#48;&#49;&#48;
+
+&#35;&#35;&#35; Do GMO requests for lv&#51;&#48; accounts.
+&#35;&#35;&#35; Setting False will increase encounter rate and reduce hashing usage as it will apply insta&#45;teleport encounter.
+&#35;&#35;&#35; Setting True will reduce account ban risks as it will apply normal Monocle behavior.
+&#35;&#35;&#35; Default True.
+LV&#51;&#48;&#95;GMO &#61; False
+
+&#35;&#35;&#35; Maximum speed for lv&#51;&#48; accounts in SPEED&#95;UNIT/hr.
+&#35;&#35;&#35; Defaults to &#55;&#52;&#53;.&#54;&#52;&#53;&#52; miles/hr &#40;&#49;&#50;&#48;&#48; km/hr&#41; hypothetical hyperloop speed.
+&#35;&#35;&#35; Set it to &#48;.&#48; to disable.
+&#35;&#35;&#35; When disabled, worker will not take any traveling time to encounter. &#40;insta&#45;teleport activated&#33;&#41;
+LV&#51;&#48;&#95;MAX&#95;SPEED &#61; &#48;.&#48;
+
+&#35;&#35;&#35; If encounter jobs queue up more than this amount, new sightings will be saved without encounter.
+&#35;&#35;&#35; Defaults to &#48;, which means no max limit.
+LV&#51;&#48;&#95;MAX&#95;QUEUE &#61; &#48;
+&#35;
+&#35;&#35;&#35;It is recommended to set it to this formula if you decided to cap the max queue size.
+&#35;LV&#51;&#48;&#95;MAX&#95;QUEUE &#61; int&#40;LV&#51;&#48;&#95;PERCENT&#95;OF&#95;WORKERS &#42; GRID&#91;&#48;&#93; &#42; GRID&#91;&#49;&#93; &#42; &#49;&#48;.&#48;&#41;
+
+RAIDERS&#95;PER&#95;GYM &#61; &#50;
+&#35;RAIDERS&#95;PER&#95;GYM &#61; &#48;.&#53;
+
+
+
+&#35; the corner points of a rectangle for your workers to spread out over before
+&#35; any spawn points have been discovered
+MAP&#95;START &#61; &#40;&#53;&#50;.&#48;&#52;&#55;&#53;&#55;&#53;, &#52;.&#54;&#55;&#54;&#50;&#50;&#56;&#41;
+MAP&#95;END &#61; &#40;&#53;&#49;.&#57;&#56;&#54;&#51;&#48;&#49;, &#52;.&#55;&#51;&#56;&#55;&#49;&#50;&#41;
+
+
+&#35; ensure that you visit within this many meters of every part of your map during bootstrap
+&#35; lower values are more thorough but will take longer
+BOOTSTRAP&#95;RADIUS &#61; &#49;&#50;&#48;
+
+GIVE&#95;UP&#95;KNOWN &#61; &#55;&#53;   &#35; try to find a worker for a known spawn for this many seconds before giving up
+GIVE&#95;UP&#95;UNKNOWN &#61; &#54;&#48; &#35; try to find a worker for an unknown point for this many seconds before giving up
+SKIP&#95;SPAWN &#61; &#57;&#48;      &#35; don&#39;t even try to find a worker for a spawn if the spawn time was more than this many seconds ago
+
+&#35; How often should the mystery queue be reloaded &#40;default &#57;&#48;s&#41;
+&#35; this will reduce the grouping of workers around the last few mysteries
+&#35;RESCAN&#95;UNKNOWN &#61; &#57;&#48;
+
+&#35; filename of accounts CSV
+&#35;ACCOUNTS&#95;CSV &#61; &#39;accounts&#50;.csv&#39;
+
+&#35;&#35;&#35; Swap out accounts on warning popup
+&#35;ACCOUNTS&#95;SWAP&#95;OUT&#95;ON&#95;WARN &#61; True
+&#35;
+&#35;&#35;&#35; Set period for account hibernation.
+&#35;&#35;&#35; For hibernation to work, set up cron for cleanup.py. See wiki for details.
+&#35;ACCOUNTS&#95;HIBERNATE&#95;DAYS &#61; &#55;.&#48;
+
+&#35; the directory that the pickles folder, socket, CSV, etc. will go in
+&#35; defaults to working directory if not set
+&#35;DIRECTORY &#61; None
+
+&#35; Allows you to specify how many log files to keep before recycling
+&#35; Monocle defaults to scan.log plus &#52; for a total of &#53;
+&#35;LOGGED&#95;FILES &#61; &#52;
+
+&#35; Limit the number of simultaneous logins to this many at a time.
+&#35; Lower numbers will increase the amount of time it takes for all workers to
+&#35; get started but are recommended to avoid suddenly flooding the servers with
+&#35; accounts and arousing suspicion.
+SIMULTANEOUS&#95;LOGINS &#61; &#53;&#48;
+
+&#35; Limit the number of workers simulating the app startup process simultaneously.
+SIMULTANEOUS&#95;SIMULATION &#61; &#53;&#48;
+
+&#35; Immediately select workers whose speed are below &#40;SPEED&#95;UNIT&#41;p/h instead of
+&#35; continuing to try to find the worker with the lowest speed.
+&#35; May increase clustering if you have a high density of workers.
+GOOD&#95;ENOUGH &#61; &#48;.&#49;
+
+&#35; Seconds to sleep after failing to find an eligible worker before trying again.
+SEARCH&#95;SLEEP &#61; &#50;.&#53;
+
+&#35;&#35; alternatively define a Polygon to use as boundaries &#40;requires shapely&#41;
+&#35;&#35; if BOUNDARIES is set, STAY&#95;WITHIN&#95;MAP will be ignored
+&#35;&#35; more information available in the shapely manual&#58;
+&#35;&#35; http&#58;//toblerity.org/shapely/manual.html&#35;polygons
+from shapely.geometry import Polygon
+BOUNDARIES &#61; Polygon&#40;&#40;&#40;&#53;&#50;.&#48;&#52;&#48;&#49;&#51;&#56;&#48;&#57;&#51;&#55;&#53;&#48;&#57;,&#52;.&#55;&#48;&#54;&#56;&#54;&#57;&#49;&#50;&#53;&#51;&#54;&#54;&#50;&#41;,&#40;&#53;&#50;.&#48;&#50;&#56;&#52;&#49;&#54;&#48;&#49;&#48;&#55;&#52;&#57;&#55;,&#52;.&#54;&#56;&#48;&#54;&#57;&#48;&#55;&#54;&#53;&#51;&#56;&#48;&#57;&#41;,&#40;&#53;&#50;.&#48;&#50;&#52;&#56;&#55;&#55;&#54;&#54;&#49;&#50;&#50;&#51;&#51;,&#52;.&#54;&#54;&#54;&#52;&#52;&#50;&#56;&#55;&#49;&#48;&#57;&#51;&#56;&#41;,&#40;&#53;&#50;.&#48;&#49;&#55;&#51;&#55;&#55;&#53;&#52;&#55;&#50;&#50;&#54;&#53;,&#52;.&#54;&#56;&#50;&#52;&#57;&#51;&#50;&#48;&#57;&#56;&#51;&#56;&#57;&#41;,&#40;&#53;&#50;.&#48;&#48;&#49;&#50;&#54;&#51;&#56;&#57;&#53;&#55;&#55;&#56;&#54;,&#52;.&#54;&#57;&#51;&#50;&#50;&#50;&#48;&#52;&#53;&#56;&#57;&#56;&#52;&#41;,&#40;&#53;&#49;.&#57;&#57;&#52;&#50;&#51;&#53;&#52;&#55;&#48;&#50;&#55;&#54;&#52;,&#52;.&#54;&#55;&#52;&#53;&#49;&#48;&#57;&#53;&#53;&#56;&#49;&#48;&#53;&#41;,&#40;&#53;&#49;.&#57;&#57;&#50;&#54;&#52;&#57;&#57;&#53;&#56;&#54;&#49;&#57;&#51;,&#52;.&#54;&#55;&#57;&#51;&#49;&#55;&#52;&#55;&#52;&#51;&#54;&#53;&#50;&#41;,&#40;&#53;&#49;.&#57;&#57;&#53;&#57;&#50;&#54;&#54;&#50;&#48;&#56;&#50;&#55;&#57;,&#52;.&#54;&#57;&#53;&#50;&#56;&#49;&#57;&#56;&#50;&#52;&#50;&#49;&#57;&#41;,&#40;&#53;&#50;.&#48;&#48;&#53;&#50;&#55;&#57;&#54;&#52;&#51;&#53;&#49;&#49;&#56;,&#52;.&#55;&#49;&#52;&#54;&#55;&#57;&#55;&#49;&#56;&#48;&#49;&#55;&#54;&#41;,&#40;&#53;&#50;.&#48;&#48;&#53;&#50;&#50;&#54;&#56;&#48;&#55;&#48;&#54;&#52;&#57;,&#52;.&#55;&#50;&#49;&#56;&#48;&#51;&#54;&#54;&#53;&#49;&#54;&#49;&#49;&#41;,&#40;&#53;&#50;.&#48;&#48;&#51;&#49;&#54;&#54;&#49;&#51;&#54;&#57;&#56;&#52;&#55;,&#52;.&#55;&#53;&#55;&#50;&#53;&#49;&#55;&#51;&#57;&#53;&#48;&#50;&#41;,&#40;&#53;&#50;.&#48;&#50;&#52;&#53;&#48;&#55;&#57;&#54;&#54;&#55;&#54;&#50;&#49;,&#52;.&#55;&#52;&#52;&#50;&#48;&#53;&#52;&#55;&#52;&#56;&#53;&#51;&#53;&#41;,&#40;&#53;&#50;.&#48;&#50;&#55;&#55;&#50;&#57;&#52;&#56;&#55;&#50;&#48;&#57;,&#52;.&#55;&#49;&#57;&#48;&#53;&#55;&#48;&#56;&#51;&#49;&#50;&#57;&#57;&#41;,&#40;&#53;&#50;.&#48;&#51;&#55;&#53;&#53;&#49;&#48;&#53;&#49;&#52;&#53;&#51;&#51;,&#52;.&#55;&#49;&#57;&#49;&#52;&#50;&#57;&#49;&#51;&#56;&#49;&#56;&#52;&#41;,&#40;&#53;&#50;.&#48;&#52;&#50;&#49;&#52;&#55;&#53;&#54;&#55;&#57;&#51;&#48;&#49;,&#52;.&#55;&#50;&#50;&#51;&#50;&#57;&#51;&#55;&#56;&#49;&#50;&#56;&#49;&#41;,&#40;&#53;&#50;.&#48;&#52;&#50;&#52;&#49;&#52;&#56;&#51;&#49;&#48;&#56;&#56;,&#52;.&#55;&#51;&#51;&#53;&#56;&#51;&#57;&#50;&#55;&#49;&#53;&#52;&#53;&#41;,&#40;&#53;&#50;.&#48;&#53;&#53;&#51;&#48;&#48;&#57;&#53;&#55;&#57;&#49;&#51;&#49;,&#52;.&#55;&#52;&#48;&#54;&#52;&#51;&#53;&#48;&#49;&#50;&#56;&#49;&#55;&#41;,&#40;&#53;&#50;.&#48;&#53;&#56;&#48;&#53;&#56;&#52;&#56;&#56;&#57;&#55;&#55;&#55;,&#52;.&#55;&#50;&#56;&#54;&#55;&#48;&#49;&#50;&#48;&#50;&#51;&#57;&#51;&#41;&#41;&#41;
+
+&#35; key for Bossland&#39;s hashing server, needed if you&#39;re not using Go Hash.
+HASH&#95;KEY &#61; &#39;&#50;R&#51;M&#53;D&#54;I&#49;K&#51;N&#52;V&#49;Z&#56;J&#53;A&#39;  &#35; this key is fake
+
+&#35;GO&#95;HASH &#61; False
+
+&#35; key for Go Hash a new hashing service that acts as a hash surge buffer on top of Bosslands hash server with a pay per hash model. Needed if you&#39;re not using a key direct from Bossland
+&#35;GO&#95;HASH&#95;KEY &#61; &#39;&#55;T&#57;P&#56;H&#57;B&#48;S&#49;C&#54;B&#48;Q&#49;L&#50;P&#39; &#35; this is a fake key
+
+&#35;&#35;&#35; Optional conguration for hash server.
+&#35;&#35;&#35; Do not mess with the following hash configs if you don&#39;t know what you are doing.
+&#35;
+&#35;&#35;&#35; Buddyauth endpoint
+HASH&#95;ENDPOINT&#61;&#34;http&#58;//&#51;&#55;.&#53;&#57;.&#49;&#49;&#56;.&#51;&#54;&#58;&#56;&#48;&#55;&#48;&#34;
+&#35;
+&#35;&#35;&#35; Gohash endpoint 
+&#35;GOHASH&#95;ENDPOINT&#61;&#34;http&#58;//hash.gomanager.biz&#34;
+
+&#35; Skip PokéStop spinning and egg incubation if your request rate is too high
+&#35; for your hashing subscription.
+&#35; e.g.
+&#35;   &#55;&#53;/&#49;&#53;&#48; hashes available &#51;&#53;/&#54;&#48; seconds passed &#61;&#62; fine
+&#35;   &#55;&#48;/&#49;&#53;&#48; hashes available &#51;&#48;/&#54;&#48; seconds passed &#61;&#62; throttle &#40;only scan&#41;
+&#35; value&#58; how many requests to keep as spare &#40;&#48;.&#49; &#61; &#49;&#48;&#37;&#41;, False to disable
+&#35;SMART&#95;THROTTLE &#61; False
+
+&#35; Swap the worker that has seen the fewest Pokémon every x seconds
+&#35; Defaults to whatever will allow every worker to be swapped within &#54; hours
+&#35;SWAP&#95;OLDEST &#61; &#51;&#48;&#48;  &#35; &#53; minutes
+&#35; Only swap if it&#39;s been active for more than x minutes
+&#35;MINIMUM&#95;RUNTIME &#61; &#49;&#48;
+
+&#35;&#35;&#35; these next &#54; options use more requests but look more like the real client
+APP&#95;SIMULATION &#61; True     &#35; mimic the actual app&#39;s login requests
+COMPLETE&#95;TUTORIAL &#61; True  &#35; complete the tutorial process and configure avatar for all accounts that haven&#39;t yet
+INCUBATE&#95;EGGS &#61; True      &#35; incubate eggs if available
+
+&#35;&#35; encounter Pokémon to store IVs.
+&#35;&#35; valid options&#58;
+&#35; &#39;all&#39; will encounter every Pokémon that hasn&#39;t been already been encountered
+&#35; &#39;some&#39; will encounter Pokémon if they are in ENCOUNTER&#95;IDS or eligible for notification
+&#35; None will never encounter Pokémon
+ENCOUNTER &#61;  &#39;all&#39;
+&#35;ENCOUNTER&#95;IDS &#61;  &#40;&#54;&#53;,&#54;&#56;,&#55;&#54;,&#56;&#57;,&#49;&#48;&#56;,&#49;&#49;&#49;,&#49;&#49;&#51;,&#49;&#49;&#52;,&#49;&#51;&#49;,&#49;&#51;&#50;,&#49;&#52;&#50;,&#49;&#52;&#51;,&#49;&#52;&#57;,&#49;&#55;&#54;,&#49;&#55;&#57;,&#49;&#56;&#48;,&#49;&#56;&#49;,&#50;&#51;&#49;,&#50;&#51;&#50;,&#50;&#51;&#55;,&#50;&#52;&#50;,&#50;&#52;&#54;,&#50;&#52;&#55;,&#50;&#52;&#56;&#41;
+
+&#35; PokéStops
+SPIN&#95;POKESTOPS &#61; True  &#35; spin all PokéStops that are within range
+SPIN&#95;COOLDOWN &#61; &#51;&#48;&#48;    &#35; spin only one PokéStop every n seconds &#40;default &#51;&#48;&#48;&#41;
+
+&#35;&#35; Gyms
+
+&#35; Cools down for x seconds for a worker after scanning a gym details.
+&#35;GYM&#95;COOLDOWN &#61; &#49;&#48;
+
+&#35; Toggles scanning for gym details. Smart throttle is applied in the same way as PokéStops.
+&#35;GET&#95;GYM&#95;DETAILS &#61; True 
+
+&#35; minimum number of each item to keep if the bag is cleaned
+&#35; bag cleaning is disabled if this is not present or is commented out
+&#39;&#39;&#39; &#35; triple quotes are comments, remove them to use this ITEM&#95;LIMITS example
+ITEM&#95;LIMITS &#61; &#123;
+    &#49;&#58;    &#48;,  &#35; Poké Ball
+    &#50;&#58;    &#48;,  &#35; Great Ball
+    &#51;&#58;    &#53;,  &#35; Ultra Ball
+    &#52;&#58;    &#49;&#48;,  &#35; Master Ball
+    &#49;&#48;&#49;&#58;   &#48;,  &#35; Potion
+    &#49;&#48;&#50;&#58;   &#48;,  &#35; Super Potion
+    &#49;&#48;&#51;&#58;   &#48;,  &#35; Hyper Potion
+    &#49;&#48;&#52;&#58;  &#53;,  &#35; Max Potion
+    &#50;&#48;&#49;&#58;   &#48;,  &#35; Revive
+    &#50;&#48;&#50;&#58;  &#53;,  &#35; Max Revive
+    &#51;&#48;&#49;&#58;  &#53;,  &#35; Lucky Egg
+    &#52;&#48;&#49;&#58;  &#53;,  &#35; Incense
+    &#53;&#48;&#49;&#58;  &#53;,  &#35; Lure Module 
+    &#55;&#48;&#49;&#58;  &#53;,  &#35; Razz Berry
+    &#55;&#48;&#50;&#58;  &#53;,  &#35; Bluk Berry
+    &#55;&#48;&#51;&#58;  &#53;,  &#35; Nanab Berry
+    &#55;&#48;&#52;&#58;  &#53;,  &#35; Wepar Berry
+    &#55;&#48;&#53;&#58;  &#53;,  &#35; Pinap Berry
+    &#57;&#48;&#50;&#58;  &#53;,  &#35; Incubator
+&#125;
+&#39;&#39;&#39;
+
+&#35; Update the console output every x seconds
+REFRESH&#95;RATE &#61; &#48;.&#55;&#53;  &#35; &#55;&#53;&#48;ms
+&#35; Update the seen/speed/visit/speed stats every x seconds
+STAT&#95;REFRESH &#61; &#53;
+
+&#35; sent with GET&#95;PLAYER requests, should match your region
+PLAYER&#95;LOCALE &#61; &#123;&#39;country&#39;&#58; &#39;US&#39;, &#39;language&#39;&#58; &#39;en&#39;, &#39;timezone&#39;&#58; &#39;America/Denver&#39;&#125;
+
+&#35; retry a request after failure this many times before giving up
+MAX&#95;RETRIES &#61; &#51;
+
+&#35; number of seconds before timing out on a login request
+LOGIN&#95;TIMEOUT &#61; &#50;.&#53;
+
+&#35; add spawn points reported in cell&#95;ids to the unknown spawns list
+&#35;MORE&#95;POINTS &#61; False
+
+&#35; Set to True to kill the scanner when a newer version is forced
+&#35;FORCED&#95;KILL &#61; False
+
+&#35;&#35;&#35; Exclude these Pokémon from the map by default &#40;only visible in trash layer&#41; 
+&#35;&#35;&#35; DB insert is not affected. The will still be inserted to DB as normal. See NO&#95;DB&#95;INSERT&#95;IDS config below.
+TRASH&#95;IDS &#61; &#40;
+    &#49;&#54;, &#49;&#57;, &#50;&#49;, &#50;&#57;, &#51;&#50;, &#52;&#49;, &#52;&#54;, &#52;&#56;, &#53;&#48;, &#53;&#50;, &#53;&#54;, &#55;&#52;, &#55;&#55;, &#57;&#54;, &#49;&#49;&#49;, &#49;&#51;&#51;,
+    &#49;&#54;&#49;, &#49;&#54;&#51;, &#49;&#54;&#55;, &#49;&#55;&#55;, &#49;&#56;&#51;, &#49;&#57;&#49;, &#49;&#57;&#52;
+&#41;
+
+&#35;&#35;&#35; Prevent these pokemon from being inserted to the database and thus visible on the map&#59; at all
+&#35;&#35;&#35; Default is None &#40;Everything is inserted&#41;
+&#35;NO&#95;DB&#95;INSERT&#95;IDS &#61; None
+
+&#35;&#35;&#35; To set it the same as TRASH&#95;IDS do the following.
+&#35;NO&#95;DB&#95;INSERT&#95;IDS &#61; TRASH&#95;IDS
+
+&#35; include these Pokémon on the &#34;rare&#34; report
+RARE&#95;IDS &#61; &#40;&#51;, &#54;, &#57;, &#52;&#53;, &#54;&#50;, &#55;&#49;, &#56;&#48;, &#56;&#53;, &#56;&#55;, &#56;&#57;, &#57;&#49;, &#57;&#52;, &#49;&#49;&#52;, &#49;&#51;&#48;, &#49;&#51;&#49;, &#49;&#51;&#52;&#41;
+
+from datetime import datetime
+REPORT&#95;SINCE &#61; datetime&#40;&#50;&#48;&#49;&#55;, &#50;, &#49;&#55;&#41;  &#35; base reports on data from after this date
+
+&#35; used for altitude queries and maps in reports
+&#35;GOOGLE&#95;MAPS&#95;KEY &#61; &#39;OYOgW&#49;wryrp&#50;RKJ&#56;&#49;u&#55;BLvHfYUA&#54;aArIyuQCXu&#52;&#39;  &#35; this key is fake
+REPORT&#95;MAPS &#61; True  &#35; Show maps on reports
+&#35;ALT&#95;RANGE &#61; &#40;&#49;&#50;&#53;&#48;, &#49;&#52;&#53;&#48;&#41;  &#35; Fall back to altitudes in this range if Google query fails
+
+&#35;&#35; Round altitude coordinates to this many decimal places
+&#35;&#35; More precision will lead to larger caches and more Google API calls
+&#35;&#35; Maximum distance from coords to rounded coords for precisions &#40;at Lat&#52;&#48;&#41;&#58;
+&#35;&#35; &#49;&#58; &#55;KM, &#50;&#58; &#55;&#48;&#48;M, &#51;&#58; &#55;&#48;M, &#52;&#58; &#55;M
+&#35;ALT&#95;PRECISION &#61; &#50;
+
+&#35;&#35; Automatically resolve captchas using &#50;Captcha key.
+CAPTCHA&#95;KEY &#61; &#39;&#57;&#53;&#50;&#57;&#52;&#51;&#49;&#53;ed&#50;&#48;b&#51;f&#55;e&#48;f&#51;bad&#48;d&#54;&#51;e&#48;&#49;&#53;&#53;&#39;
+&#35;&#35; the number of CAPTCHAs an account is allowed to receive before being swapped out
+&#35;CAPTCHAS&#95;ALLOWED &#61; &#51;
+&#35;&#35; Get new accounts from the CAPTCHA queue first if it&#39;s not empty
+&#35;FAVOR&#95;CAPTCHA &#61; True
+
+&#35; allow displaying the live location of workers on the map
+MAP&#95;WORKERS &#61; True
+&#35; filter these Pokemon from the map to reduce traffic and browser load
+&#35;MAP&#95;FILTER&#95;IDS &#61; &#91;&#49;&#54;&#49;, &#49;&#54;&#53;, &#49;&#54;, &#49;&#57;, &#49;&#54;&#55;&#93;
+
+&#35; unix timestamp of last spawn point migration, spawn times learned before this will be ignored
+LAST&#95;MIGRATION &#61; &#49;&#52;&#56;&#49;&#57;&#51;&#50;&#56;&#48;&#48;  &#35; Dec. &#49;&#55;th, &#50;&#48;&#49;&#54;
+
+&#35; Treat a spawn point&#39;s expiration time as unknown if nothing is seen at it on more than x consecutive visits
+&#35;FAILURES&#95;ALLOWED &#61; &#50;&#48;
+
+&#35;&#35; Map data provider and appearance, previews available at&#58;
+&#35;&#35; https&#58;//leaflet&#45;extras.github.io/leaflet&#45;providers/preview/
+&#35;MAP&#95;PROVIDER&#95;URL &#61; &#39;//&#123;s&#125;.tile.openstreetmap.org/&#123;z&#125;/&#123;x&#125;/&#123;y&#125;.png&#39;
+&#35;MAP&#95;PROVIDER&#95;ATTRIBUTION &#61; &#39;&#38;copy&#59; &#60;a href&#61;&#34;https&#58;//www.openstreetmap.org/copyright&#34;&#62;OpenStreetMap&#60;/a&#62; contributors&#39;
+
+&#35; set of proxy addresses and ports
+&#35; SOCKS requires aiosocks to be installed
+&#35;PROXIES &#61; &#123;&#39;http&#58;//&#49;&#50;&#55;.&#48;.&#48;.&#49;&#58;&#56;&#48;&#56;&#48;&#39;, &#39;https&#58;//&#49;&#50;&#55;.&#48;.&#48;.&#49;&#58;&#56;&#52;&#52;&#51;&#39;, &#39;socks&#53;&#58;//&#49;&#50;&#55;.&#48;.&#48;.&#49;&#58;&#49;&#48;&#56;&#48;&#39;&#125;
+
+&#35; Bytestring key to authenticate with manager for inter&#45;process communication
+&#35;AUTHKEY &#61; b&#39;m&#51;wtw&#48;&#39;
+&#35; Address to use for manager, leave commented if you&#39;re not sure.
+&#35;MANAGER&#95;ADDRESS &#61; r&#39;&#92;&#92;.&#92;pipe&#92;monocle&#39;  &#35; must be in this format for Windows
+&#35;MANAGER&#95;ADDRESS &#61; &#39;monocle.sock&#39;       &#35; the socket name for Unix systems
+&#35;MANAGER&#95;ADDRESS &#61; &#40;&#39;&#49;&#50;&#55;.&#48;.&#48;.&#49;&#39;, &#53;&#48;&#48;&#50;&#41;  &#35; could be used for CAPTCHA solving and live worker maps on remote systems
+
+&#35; Store the cell IDs so that they don&#39;t have to be recalculated every visit.
+&#35; Enabling will &#40;potentially drastically&#41; increase memory usage.
+&#35;CACHE&#95;CELLS &#61; False
+
+&#35; Only for use with web&#95;sanic &#40;requires PostgreSQL&#41;
+&#35;DB &#61; &#123;&#39;host&#39;&#58; &#39;&#49;&#50;&#55;.&#48;.&#48;.&#49;&#39;, &#39;user&#39;&#58; &#39;monocle&#95;role&#39;, &#39;password&#39;&#58; &#39;pik&#52;chu&#39;, &#39;port&#39;&#58; &#39;&#53;&#52;&#51;&#50;&#39;, &#39;database&#39;&#58; &#39;monocle&#39;&#125;
+
+&#35; Disable to use Python&#39;s event loop even if uvloop is installed
+&#35;UVLOOP &#61; True
+
+&#35; The number of coroutines that are allowed to run simultaneously.
+&#35;COROUTINES&#95;LIMIT &#61; GRID&#91;&#48;&#93; &#42; GRID&#91;&#49;&#93;
+
+&#35;&#35;&#35; FRONTEND CONFIGURATION
+LOAD&#95;CUSTOM&#95;HTML&#95;FILE &#61; False &#35; File path MUST be &#39;templates/custom.html&#39;
+LOAD&#95;CUSTOM&#95;CSS&#95;FILE &#61; False  &#35; File path MUST be &#39;static/css/custom.css&#39;
+LOAD&#95;CUSTOM&#95;JS&#95;FILE &#61; False   &#35; File path MUST be &#39;static/js/custom.js&#39;
+
+&#35;FB&#95;PAGE&#95;ID &#61; None
+&#35;TWITTER&#95;SCREEN&#95;NAME &#61; None  &#35; Username withouth &#39;&#64;&#39; char
+&#35;DISCORD&#95;INVITE&#95;ID &#61; None
+&#35;TELEGRAM&#95;USERNAME &#61; None  &#35; Username withouth &#39;&#64;&#39; char
+
+&#35;&#35; Variables below will be used as default values on frontend
+&#35;RAIDS&#95;FILTER &#61; &#40;&#49;, &#50;, &#51;, &#52;, &#53;&#41;  &#35; Levels shown by default on map
+FIXED&#95;OPACITY &#61; False  &#35; Make marker opacity independent of remaining time
+SHOW&#95;TIMER &#61; False  &#35; Show remaining time on a label under each pokemon marker
+SHOW&#95;TIMER&#95;RAIDS &#61; True  &#35; Show remaining time on a label under each raid marker
+
+&#35;&#35;&#35; OPTIONS BELOW THIS POINT ARE ONLY NECESSARY FOR NOTIFICATIONS &#35;&#35;&#35;
+NOTIFY &#61; True&#35; enable notifications
+
+&#35; create images with Pokémon image and optionally include IVs and moves
+&#35; requires cairo and ENCOUNTER &#61; &#39;notifying&#39; or &#39;all&#39;
+TWEET&#95;IMAGES &#61; True
+&#35; IVs and moves are now dependant on level, so this is probably not useful
+IMAGE&#95;STATS &#61; False
+
+&#35; As many hashtags as can fit will be included in your tweets, these will
+&#35; be combined with landmark&#45;specific hashtags &#40;if applicable&#41;.
+HASHTAGS &#61; &#123;AREA&#95;NAME, &#39;Monocle&#39;, &#39;PokemonGO&#39;&#125;
+&#35;TZ&#95;OFFSET &#61; &#48;  &#35; UTC offset in hours &#40;if different from system time&#41;
+
+&#35; the required number of seconds remaining to notify about a Pokémon
+TIME&#95;REQUIRED &#61; &#54;&#48;&#48;  &#35; &#49;&#48; minutes
+
+&#35;&#35;&#35; Only set either the NOTIFY&#95;RANKING or NOTIFY&#95;IDS, not both&#33;
+&#35; The &#40;x&#41; rarest Pokémon will be eligible for notification. Whether a
+&#35; notification is sent or not depends on its score, as explained below.
+NOTIFY&#95;RANKING &#61; None
+
+&#35; Pokémon to potentially notify about, in order of preference.
+&#35; The first in the list will have a rarity score of &#49;, the last will be &#48;.
+NOTIFY&#95;IDS &#61; None
+
+&#35; Sightings of the top &#40;x&#41; will always be notified about, even if below TIME&#95;REQUIRED
+&#35; &#40;ignored if using NOTIFY&#95;IDS instead of NOTIFY&#95;RANKING&#41;
+&#35;ALWAYS&#95;NOTIFY &#61; &#49;&#52;
+
+&#35; Always notify about the following Pokémon even if their time remaining or scores are not high enough
+ALWAYS&#95;NOTIFY&#95;IDS &#61; tuple&#40;range&#40;&#49;, &#53;&#49;&#50;&#41;&#41;
+
+&#35; Never notify about the following Pokémon, even if they would otherwise be eligible
+&#35;NEVER&#95;NOTIFY&#95;IDS &#61; TRASH&#95;IDS
+
+&#35; Override the rarity score for particular Pokémon
+&#35; format is&#58; &#123;pokemon&#95;id&#58; rarity&#95;score&#125;
+&#35;RARITY&#95;OVERRIDE &#61; &#123;&#49;&#52;&#56;&#58; &#48;.&#54;, &#49;&#52;&#57;&#58; &#48;.&#57;&#125;
+
+&#35; Ignore IV score and only base decision on rarity score &#40;default if IVs not known&#41;
+&#35;IGNORE&#95;IVS &#61; False
+
+&#35; Ignore rarity score and only base decision on IV score
+&#35;IGNORE&#95;RARITY &#61; False
+
+&#35; The Pokémon score required to notify goes on a sliding scale from INITIAL&#95;SCORE
+&#35; to MINIMUM&#95;SCORE over the course of FULL&#95;TIME seconds following a notification
+&#35; Pokémon scores are an average of the Pokémon&#39;s rarity score and IV score &#40;from &#48; to &#49;&#41;
+&#35; If NOTIFY&#95;RANKING is &#57;&#48;, the &#57;&#48;th most common Pokémon will have a rarity of score &#48;, the rarest will be &#49;.
+&#35; IV score is the IV sum divided by &#52;&#53; &#40;perfect IVs&#41;.
+FULL&#95;TIME &#61; &#49;&#56;&#48;&#48;  &#35; the number of seconds after a notification when only MINIMUM&#95;SCORE will be required
+INITIAL&#95;SCORE &#61; &#48;.&#55;  &#35; the required score immediately after a notification
+MINIMUM&#95;SCORE &#61; &#48;.&#52;  &#35; the required score after FULL&#95;TIME seconds have passed
+
+&#35;&#35;&#35; The following values are fake, replace them with your own keys to enable
+&#35;&#35;&#35; notifications, otherwise exclude them from your config
+&#35;&#35;&#35; You must provide keys for at least one service to use notifications.
+
+&#35;PB&#95;API&#95;KEY &#61; &#39;o.&#57;&#49;&#56;&#55;cb&#55;d&#53;b&#56;&#53;&#55;c&#57;&#55;bfcaa&#56;d&#54;&#51;eaa&#56;&#52;&#57;&#52;&#39;
+&#35;PB&#95;CHANNEL &#61; &#48;  &#35; set to the integer of your channel, or to None to push privately
+
+&#35;TWITTER&#95;CONSUMER&#95;KEY &#61; &#39;&#53;&#51;d&#57;&#57;&#55;&#50;&#54;&#52;eb&#55;f&#54;&#52;&#53;&#50;b&#55;bf&#49;&#48;&#49;d&#39;
+&#35;TWITTER&#95;CONSUMER&#95;SECRET &#61; &#39;&#54;&#52;b&#57;ebf&#54;&#49;&#56;&#56;&#50;&#57;a&#53;&#49;f&#56;c&#48;&#53;&#51;&#53;b&#53;&#54;cebc&#56;&#48;&#56;eb&#51;e&#56;&#48;d&#51;d&#49;&#56;bf&#57;e&#48;&#48;&#39;
+&#35;TWITTER&#95;ACCESS&#95;KEY &#61; &#39;&#49;dfb&#49;&#52;&#51;d&#52;f&#50;&#57;&#45;&#54;b&#48;&#48;&#55;a&#53;&#57;&#49;&#55;df&#50;b&#50;&#51;d&#48;f&#54;db&#57;&#53;&#49;c&#52;&#50;&#50;&#55;cdf&#55;&#54;&#56;b&#39;
+&#35;TWITTER&#95;ACCESS&#95;SECRET &#61; &#39;e&#55;&#52;&#51;ed&#49;&#51;&#53;&#51;b&#54;e&#57;a&#52;&#53;&#53;&#56;&#57;f&#48;&#54;&#49;f&#55;d&#48;&#56;&#51;&#55;&#52;db&#51;&#50;&#50;&#50;&#57;ec&#52;a&#54;&#49;&#39;
+
+&#35;&#35; Telegram bot token is the one Botfather sends to you after completing bot creation.
+&#35;&#35; Chat ID can be two different values&#58;
+&#35;&#35; &#49;&#41; &#39;&#64;channel&#95;name&#39; for channels
+&#35;&#35; &#50;&#41; Your chat&#95;id if you will use your own account. To retrieve your ID, write to your bot and check this URL&#58;
+&#35;&#35;     https&#58;//api.telegram.org/bot&#60;BOT&#95;TOKEN&#95;HERE&#62;/getUpdates
+&#35;&#35;
+&#35;&#35; TELEGRAM&#95;MESSAGE&#95;TYPE can be &#48; or &#49;&#58;
+&#35;&#35; &#61;&#62; &#48; you&#39;ll receive notifications as venue &#40;as you already seen before in Monocle&#41;
+&#35;&#35; &#61;&#62; &#49; you&#39;ll receive notifications as text message with GMaps link
+&#35;TELEGRAM&#95;BOT&#95;TOKEN &#61; &#39;&#49;&#50;&#51;&#52;&#53;&#54;&#55;&#56;&#57;&#58;AA&#49;&#50;&#51;&#52;&#53;qT&#54;QDd&#49;&#50;&#51;&#52;&#53;RekXSQeoZBXVt&#45;AAA&#39;
+&#35;TELEGRAM&#95;CHAT&#95;ID &#61; &#39;&#64;your&#95;channel&#39;
+&#35;TELEGRAM&#95;MESSAGE&#95;TYPE &#61; &#48;
+
+&#35;&#35;&#35; The following raid notification related configs
+&#35;&#35;&#35; only apply to Chrale&#39;s version of raids notification &#40;no webhook support, only Telegram and Discord&#41;
+&#35;&#35;&#35; For webhook raids notification, see below for NOTIFY&#95;RAIDS&#95;WEBHOOK
+&#35;&#35;&#35;
+&#35;NOTIFY&#95;RAIDS &#61; False &#35; Enable raid notifications. Default False
+&#35;RAIDS&#95;LVL&#95;MIN &#61; &#49;
+&#35;RAIDS&#95;IDS &#61; &#123;&#49;&#52;&#51;, &#50;&#52;&#56;&#125;
+&#35;RAIDS&#95;DISCORD&#95;URL &#61; &#34;https&#58;//discordapp.com/api/webhooks/xxxxxxxxxxxx/xxxxxxxxxxxx&#34;
+&#35;TELEGRAM&#95;RAIDS&#95;CHAT&#95;ID &#61; &#39;&#64;your&#95;channel&#39;
+
+&#35;ICONS&#95;URL &#61; &#34;https&#58;//raw.githubusercontent.com/ZeChrales/monocle&#45;icons/larger&#45;outlined/larger&#45;icons/&#123;&#125;.png&#34;
+
+WEBHOOKS &#61; &#123;&#39;http&#58;//&#49;&#50;&#55;.&#48;.&#48;.&#49;&#58;&#52;&#48;&#48;&#48;&#39;&#125;
+
+&#35;&#35;&#35;&#35;&#35;
+&#35;&#35; Webhook formatting config
+&#35;&#35;
+&#35;&#35; Allows configuration of outgoing raid webhooks.
+&#35;&#35; Defines &#60;our field name&#62;&#58;&#60;recipient&#39;s field name&#62;
+&#35;&#35;
+&#35;&#35; The following are all the available fields for raid webhook.
+&#35;&#35;   &#34;external&#95;id&#34;, &#34;latitude&#34;, &#34;longitude&#34;, &#34;level&#34;, &#34;pokemon&#95;id&#34;,
+&#35;&#35;   &#34;team&#34;, &#34;cp&#34;, &#34;move&#95;&#49;&#34;, &#34;move&#95;&#50;&#34;,
+&#35;&#35;   &#34;raid&#95;begin&#34;, &#34;raid&#95;battle&#34;, &#34;raid&#95;end&#34;,
+&#35;&#35;   &#34;gym&#95;id&#34;, &#34;base&#54;&#52;&#95;gym&#95;id&#34;, &#34;gym&#95;name&#34;, &#34;gym&#95;url&#34;
+&#35;&#35;
+&#35;&#35; For PokeAlarm, no config is needed since it is supported out of the box.
+&#35;
+&#35;WEBHOOK&#95;RAID&#95;MAPPING &#61; &#123;&#125;
+&#35;
+&#35;&#35; For others, the following is an example to map rename the field &#96;raid&#95;seed&#96; to &#96;external&#95;id&#96;.
+&#35;
+&#35;WEBHOOK&#95;RAID&#95;MAPPING &#61; &#123;
+&#35;    &#39;raid&#95;seed&#39;&#58; &#39;external&#95;id&#39;,
+&#35;    &#39;gym&#95;name&#39;&#58; &#39;name&#39;,
+&#35;    &#39;gym&#95;url&#39;&#58; &#39;url&#39;,
+&#35;&#125;
+
+
+&#35;&#35;&#35;&#35;&#35; Referencing landmarks in your tweets/notifications
+
+&#35;&#35;&#35;&#35; It is recommended to store the LANDMARKS object in a pickle to reduce startup
+&#35;&#35;&#35;&#35; time if you are using queries. An example script for this is in&#58;
+&#35;&#35;&#35;&#35; scripts/pickle&#95;landmarks.example.py
+&#35;from pickle import load
+&#35;with open&#40;&#39;pickles/landmarks.pickle&#39;, &#39;rb&#39;&#41; as f&#58;
+&#35;    LANDMARKS &#61; load&#40;f&#41;
+
+&#35;&#35;&#35; if you do pickle it, just load the pickle and omit everything below this point
+
+&#35;from monocle.landmarks import Landmarks
+&#35;LANDMARKS &#61; Landmarks&#40;query&#95;suffix&#61;AREA&#95;NAME&#41;
+
+&#35; Landmarks to reference when Pokémon are nearby
+&#35; If no points are specified then it will query OpenStreetMap for the coordinates
+&#35; If &#49; point is provided then it will use those coordinates but not create a shape
+&#35; If &#50; points are provided it will create a rectangle with its corners at those points
+&#35; If &#51; or more points are provided it will create a polygon with vertices at each point
+&#35; You can specify the string to search for on OpenStreetMap with the query parameter
+&#35; If no query or points is provided it will query with the name of the landmark &#40;and query&#95;suffix&#41;
+&#35; Optionally provide a set of hashtags to be used for tweets about this landmark
+&#35; Use is&#95;area for neighborhoods, regions, etc.
+&#35; When selecting a landmark, non&#45;areas will be chosen first if any are close enough
+&#35; the default phrase is &#39;in&#39; for areas and &#39;at&#39; for non&#45;areas, but can be overriden for either.
+
+&#35;&#35;&#35; replace these with well&#45;known places in your area
+
+&#35;&#35; since no points or query is provided, the names provided will be queried and suffixed with AREA&#95;NAME
+&#35;LANDMARKS.add&#40;&#39;Rice Eccles Stadium&#39;, shortname&#61;&#39;Rice Eccles&#39;, hashtags&#61;&#123;&#39;Utes&#39;&#125;&#41;
+&#35;LANDMARKS.add&#40;&#39;the Salt Lake Temple&#39;, shortname&#61;&#39;the temple&#39;, hashtags&#61;&#123;&#39;TempleSquare&#39;&#125;&#41;
+
+&#35;&#35; provide two corner points to create a square for this area
+&#35;LANDMARKS.add&#40;&#39;City Creek Center&#39;, points&#61;&#40;&#40;&#52;&#48;.&#55;&#54;&#57;&#50;&#49;&#48;, &#45;&#49;&#49;&#49;.&#56;&#57;&#51;&#57;&#48;&#49;&#41;, &#40;&#52;&#48;.&#55;&#54;&#55;&#50;&#51;&#49;, &#45;&#49;&#49;&#49;.&#56;&#56;&#56;&#50;&#55;&#53;&#41;&#41;, hashtags&#61;&#123;&#39;CityCreek&#39;&#125;&#41;
+
+&#35;&#35; provide a query that is different from the landmark name so that OpenStreetMap finds the correct one
+&#35;LANDMARKS.add&#40;&#39;the State Capitol&#39;, shortname&#61;&#39;the Capitol&#39;, query&#61;&#39;Utah State Capitol Building&#39;&#41;
+
+&#35;&#35;&#35; area examples &#35;&#35;&#35;
+&#35;&#35; query using name, override the default area phrase so that it says &#39;at &#40;name&#41;&#39; instead of &#39;in&#39;
+&#35;LANDMARKS.add&#40;&#39;the University of Utah&#39;, shortname&#61;&#39;the U of U&#39;, hashtags&#61;&#123;&#39;Utes&#39;&#125;, phrase&#61;&#39;at&#39;, is&#95;area&#61;True&#41;
+&#35;&#35; provide corner points to create a polygon of the area since OpenStreetMap does not have a shape for it
+&#35;LANDMARKS.add&#40;&#39;Yalecrest&#39;, points&#61;&#40;&#40;&#52;&#48;.&#55;&#53;&#48;&#50;&#54;&#51;, &#45;&#49;&#49;&#49;.&#56;&#51;&#54;&#53;&#48;&#50;&#41;, &#40;&#52;&#48;.&#55;&#53;&#48;&#51;&#55;&#55;, &#45;&#49;&#49;&#49;.&#56;&#53;&#49;&#49;&#48;&#56;&#41;, &#40;&#52;&#48;.&#55;&#53;&#49;&#53;&#49;&#53;, &#45;&#49;&#49;&#49;.&#56;&#53;&#51;&#56;&#51;&#51;&#41;, &#40;&#52;&#48;.&#55;&#52;&#49;&#50;&#49;&#50;, &#45;&#49;&#49;&#49;.&#56;&#53;&#51;&#57;&#48;&#57;&#41;, &#40;&#52;&#48;.&#55;&#52;&#49;&#49;&#56;&#56;, &#45;&#49;&#49;&#49;.&#56;&#51;&#54;&#53;&#49;&#57;&#41;&#41;, is&#95;area&#61;True&#41;
+
+&#35;&#35;&#35; Shadown ban module
+&#35;SB&#95;DETECTOR &#61; False
+&#35;SB&#95;COMMON&#95;POKEMON&#95;IDS &#61; &#40;&#49;&#54;,&#49;&#57;,&#50;&#51;,&#50;&#55;,&#50;&#57;,&#51;&#50;,&#52;&#49;,&#52;&#51;,&#52;&#54;,&#53;&#50;,&#53;&#52;,&#54;&#48;,&#54;&#57;,&#55;&#50;,&#55;&#52;,&#55;&#55;,&#56;&#49;,&#57;&#56;,&#49;&#49;&#56;,&#49;&#50;&#48;,&#49;&#50;&#57;,&#49;&#54;&#49;,&#49;&#54;&#53;,&#49;&#54;&#55;,&#49;&#55;&#55;,&#49;&#56;&#51;,&#49;&#56;&#55;,&#49;&#57;&#49;,&#49;&#57;&#52;,&#49;&#57;&#56;,&#50;&#48;&#57;,&#50;&#49;&#56;&#41;
+&#35;SB&#95;MAX&#95;ENC&#95;MISS &#61; &#51;           &#35; Number of encounter misses before account is marked as sbanned
+&#35;SB&#95;MIN&#95;SIGHTING&#95;COUNT &#61; &#51;&#48;    &#35; Minimum sightings required to flag SB
+&#35;SB&#95;QUARANTINE&#95;VISITS &#61; &#49;&#50;     &#35; Number of mininum visits needed to check if an account has seen any uncommon
+&#35;SB&#95;WEBHOOK &#61; None             &#35; Define webhook end point for SB. Payload is Discord type.
+
+&#35;&#35;&#35;&#35;
+&#35;&#35;&#35; PgScout &#40;Credit to Avatar&#54;&#57;&#48;&#41;
+&#35;&#35; MUST MATCH YOUR PGSCOUT CONFIG.JSON.  Will encounter based on ENCOUNTER&#95;IDs above.  
+&#35;&#35; If encounter fails, worker.py will attempt to encounter with the running acount &#40;if lv &#62; &#51;&#48;&#41;
+&#35;&#35; If it fails, sighting will be saved without additional encounter info.
+
+&#35;&#35;&#35; Enter in your address for PGSCOUT hook endpoint including hostname, port &#40;if any&#41; and path.
+&#35;&#35;&#35; If set to a url, PGSCOUT will be used. If None, normal Monocle encounter will be used. 
+&#35;
+&#35;PGSCOUT&#95;ENDPOINT &#61; None
+&#35;
+&#35;&#35; Example,
+&#35;PGSCOUT&#95;ENDPOINT &#61; &#123;&#34;http&#58;//&#49;&#50;&#55;.&#48;.&#48;.&#49;&#58;&#49;&#50;&#51;&#52;/iv&#34;,&#34;http&#58;//&#49;&#50;&#55;.&#48;.&#48;.&#49;&#58;&#49;&#50;&#51;&#53;/iv&#34;&#125;
+&#35;
+&#35;&#35; &#42;Take note that /iv is needed at the end for PGScout. Do not remove it.&#42;
+
+&#35;&#35; Set the connection timeout to wait on a response from PGScout.  Default is &#52;&#48; seconds.
+&#35;&#35; Timeout will be connection dependent, proxy dependent, etc.  I recommend keeping it at the default.
+&#35;&#35; Going too high will certainly guarantee a response from a Scout but will lead to greater inefficiency
+&#35;&#35; and instability for Monocle
+&#35;
+&#35;PGSCOUT&#95;TIMEOUT &#61; &#52;&#48; 
+&#35;
+
+
+&#35;&#35;&#35; Record keeping settings
+&#35;&#35;&#35;
+&#35;&#35;&#35; If True, new fort&#95;sightings and raids will be inserted. Else, existing records for the same fort will be updated &#40;if found&#41;.
+&#35;&#35;&#35; Default is False
+&#35;KEEP&#95;GYM&#95;HISTORY &#61; False
+&#35;
+&#35;&#35;&#35; If True, new sightings inserted. Else, existing sighting for the same spawnpoint will be updated &#40;if found&#41;.
+&#35;&#35;&#35; Default is True
+&#35;KEEP&#95;SPAWNPOINT&#95;HISTORY &#61; True 
+
+
+&#35;&#35;&#35; Cleanup
+&#35;&#35; Max number of rows to delete in each execution per table. Not recommended to set it too high. It will choke the DB.
+&#35; CLEANUP&#95;LIMIT &#61; &#49;&#48;&#48;&#48;&#48;&#48;
+
+&#35;&#35; Table specific cleanup times. Set &#45;&#49;.&#48; to disable
+&#35; CLEANUP&#95;RAIDS&#95;OLDER&#95;THAN&#95;X&#95;HR &#61; &#54;.&#48;
+&#35; CLEANUP&#95;SIGHTINGS&#95;OLDER&#95;THAN&#95;X&#95;HR &#61; &#54;.&#48;
+&#35; CLEANUP&#95;SPAWNPOINTS&#95;OLDER&#95;THAN&#95;X&#95;HR &#61; &#50;&#52;.&#48;
+&#35; CLEANUP&#95;FORT&#95;SIGHTINGS&#95;OLDER&#95;THAN&#95;X&#95;HR &#61; &#54;.&#48;
+&#35; CLEANUP&#95;MYSTERY&#95;SIGHTINGS&#95;OLDER&#95;THAN&#95;X&#95;HR &#61; &#50;&#52;.&#48;
+
+&#35;&#35;&#35; Discord webhook url for sending scan log messages
+&#35;SCAN&#95;LOG&#95;WEBHOOK &#61; None
+</textarea></td></tr>
+<tr><td class=list align=center><input type=button value="Preview Html" onClick="javascript:showPreview(document.info.text);"></td></tr>
+<tr><td class=listtitle align=right><input type=submit onClick="save=0;" value="Save As"><input type=text name=filename value="config.py"> <input type=button value="Cancel" onClick="if (confirm('Do you want to discard your changes?')) {save=0; location.href='/CMD_FILE_MANAGER/mappen/gouda/monocle';}"></td ></tr >
+</form></table >
+
+
+						</td></tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td style="padding: 0px; padding-left: 15px;">
+							<font class=tree>monocle</font> &raquo; <a class=tree href="https://kevv.da.bizway.nl:2222/CMD_FILE_MANAGER/mappen/gouda/monocle">Back</a>
+					</td>
+				</tr>
+				<tr>
+					<td height=39 colspan=3 align=center valign=bottom background=/IMG_FOOTER_WIDE class=white style="padding-bottom: 8">
+						<a class="white" href="http://www.directadmin.com/">DirectAdmin</a> Web Control Panel &copy; 2012-2017 JBMC Software
+					</td>
+				</tr>
+			</table>
+
+
+		</td>
+		<td class=right_shadow width=15>
+		</td>
+	</tr>
+</table>
+
+
+
+</td>
+</tr>
+</table>
+
+	<script type="text/javascript">
+		make_tables_highlightable();
+	</script>
+
+</body>
+</html>
